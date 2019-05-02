@@ -13,34 +13,33 @@ class Catalog extends Component {
         }
     }
 
-    checkRented = () => this.props.movies.some(m => m.rented[this.props.currentUser])
+    checkSomeRented = () => this.props.movies.some(m => m.rented[this.props.currentUser])
 
-    change = (event) => {
-        this.setState({
-            search: event.target.value
-        })
-    }
+    changeSearchValue = event => this.setState({search: event.target.value})
 
-
+    checkSearchMatch = title => title.toLowerCase().includes(this.state.search.toLowerCase())
 
     render() {
         const movies = this.props.movies
-        let budget = this.props.users.find(u => u.id == this.props.currentUser).budget
+        let budget
+        if (this.props.currentUser) {
+            budget = this.props.users.find(u => u.id == this.props.currentUser).budget
+        }
         return (
             <div>
                 {!this.props.currentUser ? <Redirect to={`/`} /> :
                     <div>
-                        <div>Budget: {budget}</div>
                         {this.props.currentUser ?
                             <div>Hello, {this.props.users.find(u => u.id == this.props.currentUser).name}</div> :
                             null}
-                        <input type="text" value={this.state.search} onChange={this.change} />
-                        {this.checkRented() ?
+                        <div>Budget: {budget}</div>
+                        <input placeholder="Enter Title Here" type="text" value={this.state.search} onChange={this.changeSearchValue} />
+                        {this.checkSomeRented() ?
                             <div id="rentedCatalog">
-                                <span>Rented:</span>
+                                <div className="title">Rented:</div>
                                 {movies.map(m => {
                                     return m.rented[this.props.currentUser] ?
-                                        m.title.toLowerCase().includes(this.state.search.toLowerCase()) ?
+                                        this.checkSearchMatch(m.title) ?
                                             <Movie
                                                 key={m.id}
                                                 movie={m}
@@ -53,8 +52,8 @@ class Catalog extends Component {
                                 })}
                             </div> : null}
                         <div id="moviesCatalog">
-                            <span>Catalog:</span>
-                            {movies.map(m => m.title.toLowerCase().includes(this.state.search.toLowerCase()) ?
+                            <div className="title">Catalog:</div>
+                            {movies.map(m => this.checkSearchMatch(m.title) ?
                                 <Movie
                                     key={m.id}
                                     movie={m}

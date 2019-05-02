@@ -8,7 +8,7 @@ class MovieDetail extends Component {
         return (
             <div className="movieContainer">
                 <div className="movieName">{movie.title}({movie.year})</div>
-                <div style={{ backgroundImage: `url(${movie.img})` }} className="imgDiv"></div>
+                <img src={movie.img} alt="" />
                 <div className="movieInfo">{movie.descrShort}</div>
             </div>
         );

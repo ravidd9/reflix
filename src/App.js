@@ -51,8 +51,8 @@ class App extends Component {
         <div className="App">
           <div id="home-background"></div>
           <div id="main-links">
-            <Link to="/">Home</Link>
-            <Link to="/catalog">Catalog</Link>
+            <Link className="link" to="/">Home</Link>
+            <Link className="link" to="/catalog">Catalog</Link>
             <img src="./logo.svg" alt="" />
             <hr />
           </div>
