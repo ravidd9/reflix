@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: Tahoma;
 }
 
 .App-logo {
@@ -27,7 +28,47 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+.userBox{
+  height: 100px;
+  width: 100px;
+  display: inline-block;
+  background-color: red;
+  border: 1px solid black;
+  border-radius: 10%;
+  margin: 20px;
+  cursor: pointer;
+}
+.movieDiv {
+  border: 1px solid black;
+  border-radius: 5%;
+  margin: 10px;
+  width: 150px;
+  height: 150px;
+  display: inline-block;
+}
+i{
+  cursor: pointer;
+  color: black;
+  font-size: 30px;
+}
+
+.imgDiv {
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 5%;
+  width: 150px;
+  height: 150px;
+  background-size: 150px 150px;
+}
+
+.movieContainer{
+  margin: 40px;
+  padding: 20px;
+  background-color: rgb(241, 241, 185);
+  border: 2px solid black;
 }
