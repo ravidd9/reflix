@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-
+import User from './User';
 
 class Landing extends Component {
-    constructor() {
-        super()
-        this.state = {
-            
-        }
-    }
 
     render() {
         const users = this.props.users
         return (
             <div>
-                {users.map(u => <Link to="/catalog">
-                    <div key={u.name} className="userBox">
-                        {u.name}
-                    </div>
-                </Link>)}
+                <Link to="/catalog">
+                    {users.map(u => <User key={u.id} user={u} changeUser={this.props.changeUser} />)}
+                </Link>
             </div>
         );
     }
